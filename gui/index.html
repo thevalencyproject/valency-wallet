@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Valency Network Wallet</title>
+    <script type="text/javascript" src="script.js"></script>    <!--- The Javascript File -->
+</head>
+<body>
+    <!--- Login Area -->
+    <h1>LOGIN</h1>
+    <p>How do you want to login?</p>
+    <p id="loginfailure"></p>                                <!--- Login Event Message - this is only display after a login attempt -->
+    <button onclick="userandpasslogin()">Login using a Username and Password</button>
+    <button onclick="privatekeylogin()">Login using a Wallet Private Key</button>
+
+    <textarea id="user">Username</textarea><br>              <!--- Ensure each input area has its own unique ID -->
+    <textarea id="pass">Password</textarea><br>
+    <button onclick="sendUserPassLoginRequest()">Login</button>
+
+    <textarea id="privatekey">Private Key</textarea><br>     <!--- Ensure each input area has its own unique ID -->
+    <button onclick="sendPrivateKeyLoginRequest()">Login</button>
+
+    <p id="loginsuccess"></p><br>                            <!--- Login Event Message - this is only display after a login attempt -->
+    
+
+    <!--- Constantly Displayed at the top of GUI -->
+    <p id="publicaddress">Public Key: 0x12345678912345</p>                            <!--- Displays the Wallet Public Key -->
+    <p id="privatekey">Private Key: 0x______________</p>                              <!--- Can be displayed by pressing the 'Show Private Key' button -->
+    <button onclick="showPrivateKey()">Show Private Key</button>
+    <p id="walletbalance">Wallet Balance: 12345.12345VLNC</p>                         <!--- Automatically checks the balance of the wallet (every set amount of seconds) -->
+    <p id="nextStealthAddressPublic">Next Stealth Address: 0x98765432198765</p><br>   <!--- Whenever a transaction using the past public address is detected, a new one is generated -->
+    
+
+    <!--- Main Menu -->
+    <button onclick="createTransaction()">Create Transaction</button>
+    <button onclick="transactionHistory()">View Transaction History</button>
+    <button onclick="smartContract()">Upload Smart Contract to Network</button>
+    <button onclick="logout()">Logout</button><br><br>
+
+
+    <!--- Create Transaction -->
+    <button onclick="singleTransaction()">Single Transaction</button>
+    <button onclick="multipleTransactions()">Multiple Transactions</button><br>
+
+    <label for="numOfTransactions">How many transactions are there?</label>
+    <select name="numOfTransactions" id="numOfTransactions" form="numOfTransactionsForm">
+        <option value="1transaction">1</option>
+        <option value="2transactions">2</option>
+        <option value="3transactions">3</option>
+        <option value="4transactions">4</option>
+        <option value="5transactions">5</option>
+        <option value="6transactions">6</option>
+        <option value="7transactions">7</option>
+        <option value="8transactions">8</option>
+        <option value="9transactions">9</option>
+        <option value="10transactions">10</option>
+    </select><br>
+
+    <textarea id="receiverKey">Enter the Receiver Address</textarea><br>                        <!--- Repeated for # of transactions -->
+    <textarea id="transactionsAmount">Enter the Transaction Amount (in VLNC)</textarea><br>     <!--- Repeated for # of transactions -->
+    
+    <label for="useOnionRouting">Use Onion Routing + Bridging? (increases transaction fee)</label>
+    <select name="numOfOnionNodes" id="numOfOnionNodes" form="numOfOnionNodesForm">
+        <option value="noonionnodes">Don't Use Onion Routing + Bridging</option>
+        <option value="3onionnodes">3 Nodes</option>
+        <option value="4onionnodes">4 Nodes</option>
+        <option value="5onionnodes">5 Nodes</option>
+        <option value="6onionnodes">6 Nodes</option>
+    </select>
+    
+    <p id="transactionfeeamount"></p>
+    <button onclick="sendTransaction()">Proceed</button>
+    <button onclick="cancelTransaction()">Cancel Transaction</button>
+
+    <p id="transactionresult"></p>
+    <button onclick="returnToMainMenu()">Return to Main Menu</button>
+
+
+    <!--- Check Transaction History -->
+    <h1>TRANSACTION HISTORY</h1>
+    <p id="transactionhistoryresult"></p>
+    <button onclick="returnToMainMenu()">Return to Main Menu</button>
+</body>
+</html>
