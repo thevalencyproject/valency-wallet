@@ -108,28 +108,25 @@ h1 {
     background-color: rgb(0, 114, 213);
 }
 #controlpanelbarinfo {
+    font-family: 'JetBrains Mono', sans-serif;
+    font-size: 1.1rem;
     float: left;
     margin-left: 4vh;
     width: 100vh;
+    margin-top: -0.3vh;
     display: flex;
 }
 #controlpanelbarbuttons {
     float: right;
     margin-right: 4vh;
 }
-#publicaddress {
-    margin-left: 0vw;
+#controlpanelbarinforight {
+    margin-left: 5vw;
+    float: right;
 }
-#privatekey {
-    margin-left: -2vw;
-}
-#walletbalance {
-    margin-left: 0vw;
-}
-#nextStealthAddressPublic {
-    margin-left: 0vw;
-}
-
+#controlpanelbarinfoleft { float: left; }
+#publicaddressdisplay {margin-bottom: -1.5vh;}
+#walletbalance {margin-bottom: -1.5vh;}
 
 
 /* Control Panel*/

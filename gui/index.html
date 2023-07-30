@@ -27,10 +27,14 @@
     <div id="controlpanelbar">
         <!--- Wallet Info - Constantly Displayed at the top of GUI -->
         <div id="controlpanelbarinfo">
-            <p id="publicaddress">Public Key: 0x12345678912345</p>                            <!--- Displays the Wallet Public Key -->
-            <p id="privatekey">Private Key: 0x______________</p>                              <!--- Can be displayed by pressing the 'Show Private Key' button -->
-            <p id="walletbalance">Wallet Balance: 12345.12345VLNC</p>                         <!--- Automatically checks the balance of the wallet (every set amount of seconds) -->
-            <p id="nextStealthAddressPublic">Next Stealth Address: 0x98765432198765</p><br>   <!--- Whenever a transaction using the past public address is detected, a new one is generated -->
+            <div id="controlpanelbarinfoleft">
+                <p id="publicaddressdisplay">Public Key: 0x12345678912345</p>                     <!--- Displays the Wallet Public Key -->
+                <p id="privatekeydisplay">Private Key: 0x______________</p>                       <!--- Can be displayed by pressing the 'Show Private Key' button -->
+            </div>
+            <div id="controlpanelbarinforight">
+                <p id="walletbalance">Wallet Balance: 12345.12345VLNC</p>                         <!--- Automatically checks the balance of the wallet (every set amount of seconds) -->
+                <p id="nextStealthAddressPublic">Next Stealth Address: 0x98765432198765</p><br>   <!--- Whenever a transaction using the past public address is detected, a new one is generated -->
+            </div>
         </div>
 
         <!--- Main Menu Bar-->
