@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!--- Ensure each input area has its own unique ID -->
+    <!--- Ensure each unique button has a unique onclick function -->
     <title>Valency Network Wallet</title>
+    <link rel="stylesheet" href="styles.css">                   <!--- The CSS File -->
     <script type="text/javascript" src="script.js"></script>    <!--- The Javascript File -->
 </head>
 <body>
     <!--- Login Area -->
-    <h1>LOGIN</h1>
-    <p>How do you want to login?</p>
-    <p id="loginfailure"></p>                                <!--- Login Event Message - this is only display after a login attempt -->
-    <button onclick="userandpasslogin()">Login using a Username and Password</button>
-    <button onclick="privatekeylogin()">Login using a Wallet Private Key</button>
+    <div id="loginmenu">
+        <h1>LOGIN</h1>
+        <p id="logintext">Please enter a Username and Password:</p>
+        <textarea placeholder="Username" cols="32" rows="1" id="user"></textarea><br>
+        <textarea placeholder="Password" cols="32" rows="1" id="pass"></textarea><br>
+        
+        <p id="logintext">Or login using a Private Key:</p>
+        <textarea placeholder="Wallet Private Key" cols="32" rows="1" id="privatekey"></textarea><br>
+        
+        <button id="loginbutton" onclick="sendLoginRequest()">Login</button>
 
-    <textarea id="user">Username</textarea><br>              <!--- Ensure each input area has its own unique ID -->
-    <textarea id="pass">Password</textarea><br>
-    <button onclick="sendUserPassLoginRequest()">Login</button>
-
-    <textarea id="privatekey">Private Key</textarea><br>     <!--- Ensure each input area has its own unique ID -->
-    <button onclick="sendPrivateKeyLoginRequest()">Login</button>
-
-    <p id="loginsuccess"></p><br>                            <!--- Login Event Message - this is only display after a login attempt -->
-    
+        <p id="loginerror"></p><br>     <!--- Login Event Message - this is only display after an unsuccessful login attempt -->
+    </div>
 
     <!--- Constantly Displayed at the top of GUI -->
     <p id="publicaddress">Public Key: 0x12345678912345</p>                            <!--- Displays the Wallet Public Key -->
@@ -55,8 +56,8 @@
         <option value="10transactions">10</option>
     </select><br>
 
-    <textarea id="receiverKey">Enter the Receiver Address</textarea><br>                        <!--- Repeated for # of transactions -->
-    <textarea id="transactionsAmount">Enter the Transaction Amount (in VLNC)</textarea><br>     <!--- Repeated for # of transactions -->
+    <textarea placeholder="Enter the Receiver Address" cols="32" rows="1" id="receiverKey"></textarea><br>                        <!--- Repeated for # of transactions -->
+    <textarea placeholder="Enter the Transaction Amount (in VLNC)" cols="32" rows="1" id="transactionsAmount"></textarea><br>     <!--- Repeated for # of transactions -->
     
     <label for="useOnionRouting">Use Onion Routing + Bridging? (increases transaction fee)</label>
     <select name="numOfOnionNodes" id="numOfOnionNodes" form="numOfOnionNodesForm">

@@ -1,0 +1,97 @@
+body {
+    background-color: #2b2b2b;
+    color: #ffffff;
+}
+
+h1 {
+    font-family: 'JetBrains Mono', sans-serif;
+    text-align: center;
+}
+
+#loginmenu {
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 2vh;
+
+    /* Fancy Border */
+    border-start-end-radius: 5vh;
+    border-end-start-radius: 5vh;
+    border: 2px solid white;
+
+    /* Glass Background Effect */
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.9px);
+    -webkit-backdrop-filter: blur(3.9px);
+
+    /* Login Menu Size */
+    width: 20vw;
+    height: 60vh;
+    margin-top: 20vh;
+    margin-bottom: 20vh; 
+}
+#loginbutton {
+    margin-top: 2vh;
+    width: 15vw;
+}
+#logintext {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+}
+
+textarea {
+    padding-top: 1.1vh;
+    height: 3.4vh;
+    resize: horizontal;
+    background-color: rgb(56, 56, 56);
+    
+    border-width: 2px;
+    border: 2px solid rgb(255, 255, 255);
+    outline: none;
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+textarea::placeholder {
+    font-size: 1.1rem;
+    color: rgb(255, 255, 255);
+    font-family: 'JetBrains Mono', sans-serif;
+    text-align: center;
+}
+textarea:focus {
+    border: 2px solid rgb(255, 234, 0);
+}
+
+button {
+    /* Props to Temani Afif for this animation */
+    --b:4px;   /* border length*/
+    --c:15px;  /* the cube perspective */
+    --g:calc(var(--c)*0.707); /* 0.707 = cos(45deg) = sin(45deg) */
+    color: #ffffff;
+    text-align: center;
+    padding:8px;
+    transition: 0.5s;
+    border: solid transparent;
+    border-width:var(--b) var(--b) calc(var(--c) + var(--b)) calc(var(--c) + var(--b));
+    background:
+      linear-gradient(-45deg,transparent var(--g),rgba(255, 255, 255, 1) 0) left  /var(--c) 100%,
+      linear-gradient(135deg,transparent var(--g),rgb(195, 195, 195) 0) bottom /100% var(--c),
+      conic-gradient(from -90deg at top var(--b)   right var(--b),currentColor 270deg,transparent 0),
+      conic-gradient(from  90deg at bottom calc(var(--c) + var(--b)) left calc(var(--c) + var(--b)),currentColor 270deg,transparent 0);
+    background-repeat:no-repeat;
+    background-origin:border-box;
+    transform:translate(calc(var(--c)/-1),calc(var(--c)/1));
+    clip-path: 
+      polygon(var(--c) 0%, var(--c) 0%, 
+      100% 0%, 
+      100% calc(100% - var(--c)),100% calc(100% - var(--c)),
+      var(--c) calc(100% - var(--c)),
+      var(--c) calc(100% - var(--c)));
+}
+button:hover {
+    transform:translate(0,0);
+    clip-path: 
+      polygon(0% var(--c), var(--c) 0%, 
+      100% 0%, 
+      100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, 
+      0% 100%,0% 100%);
+}
