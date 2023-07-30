@@ -50,47 +50,50 @@
     <!--- Main Screen (below control bar) -->
     <div id="controlpanel">
         <!--- Create Transaction -->
-        <button onclick="singleTransaction()">Single Transaction</button>
-        <button onclick="multipleTransactions()">Multiple Transactions</button><br>
+        <div id="createtransaction">
+            <h1>CREATE A TRANSACTION</h1>
+            <button onclick="singleTransaction()">Single Transaction</button>
+            <button onclick="multipleTransactions()">Multiple Transactions</button><br>
 
-        <label for="numOfTransactions">How many transactions are there?</label>
-        <select name="numOfTransactions" id="numOfTransactions" form="numOfTransactionsForm">
-            <option value="1transaction">1</option>
-            <option value="2transactions">2</option>
-            <option value="3transactions">3</option>
-            <option value="4transactions">4</option>
-            <option value="5transactions">5</option>
-            <option value="6transactions">6</option>
-            <option value="7transactions">7</option>
-            <option value="8transactions">8</option>
-            <option value="9transactions">9</option>
-            <option value="10transactions">10</option>
-        </select><br>
+            <label for="numOfTransactions">How many transactions are there?</label>
+            <select name="numOfTransactions" id="numOfTransactions" form="numOfTransactionsForm">
+                <option value="1transaction">1</option>
+                <option value="2transactions">2</option>
+                <option value="3transactions">3</option>
+                <option value="4transactions">4</option>
+                <option value="5transactions">5</option>
+                <option value="6transactions">6</option>
+                <option value="7transactions">7</option>
+                <option value="8transactions">8</option>
+                <option value="9transactions">9</option>
+                <option value="10transactions">10</option>
+            </select><br>
 
-        <textarea placeholder="Enter the Receiver Address" cols="32" rows="1" id="receiverKey"></textarea><br>                        <!--- Repeated for # of transactions -->
-        <textarea placeholder="Enter the Transaction Amount (in VLNC)" cols="32" rows="1" id="transactionsAmount"></textarea><br>     <!--- Repeated for # of transactions -->
+            <textarea placeholder="Enter the Receiver Address" cols="32" rows="1" id="receiverKey"></textarea><br>                        <!--- Repeated for # of transactions -->
+            <textarea placeholder="Enter the Transaction Amount (in VLNC)" cols="32" rows="1" id="transactionsAmount"></textarea><br>     <!--- Repeated for # of transactions -->
 
-        <label for="useOnionRouting">Use Onion Routing + Bridging? (increases transaction fee)</label>
-        <select name="numOfOnionNodes" id="numOfOnionNodes" form="numOfOnionNodesForm">
-            <option value="noonionnodes">Don't Use Onion Routing + Bridging</option>
-            <option value="3onionnodes">3 Nodes</option>
-            <option value="4onionnodes">4 Nodes</option>
-            <option value="5onionnodes">5 Nodes</option>
-            <option value="6onionnodes">6 Nodes</option>
-        </select>
+            <label for="useOnionRouting">Use Onion Routing + Bridging? (increases transaction fee)</label>
+            <select name="numOfOnionNodes" id="numOfOnionNodes" form="numOfOnionNodesForm">
+                <option value="noonionnodes">Don't Use Onion Routing + Bridging</option>
+                <option value="3onionnodes">3 Nodes</option>
+                <option value="4onionnodes">4 Nodes</option>
+                <option value="5onionnodes">5 Nodes</option>
+                <option value="6onionnodes">6 Nodes</option>
+            </select>
 
-        <p id="transactionfeeamount"></p>
-        <button onclick="sendTransaction()">Proceed</button>
-        <button onclick="cancelTransaction()">Cancel Transaction</button>
+            <p id="transactionfeeamount"></p>
+            <button onclick="sendTransaction()">Proceed</button>
+            <button onclick="cancelTransaction()">Cancel Transaction</button>
 
-        <p id="transactionresult"></p>
-        <button onclick="returnToMainMenu()">Return to Main Menu</button>
-
+            <p id="transactionresult"></p>
+        </div>
 
         <!--- Check Transaction History -->
-        <h1>TRANSACTION HISTORY</h1>
-        <p id="transactionhistoryresult"></p>
-        <button onclick="returnToMainMenu()">Return to Main Menu</button>
+        <div id="checktransactionhistory">
+            <h1>TRANSACTION HISTORY</h1>
+            <p id="transactionhistoryresult"></p>
+            <button onclick="returnToMainMenu()">Return to Main Menu</button>
+        </div>
     </div>
 </body>
 </html>

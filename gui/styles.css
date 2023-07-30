@@ -132,4 +132,22 @@ h1 {
 /* Control Panel*/
 #controlpanel {
     height: 92vh;
+    padding-top: 23vh;
+    padding-bottom: 23vh;
+}
+
+#createtransaction {
+    width: 50vw;
+    height: 46vh;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#checktransactionhistory {
+    width: 50vw;
+    height: 46vh;
+    margin-top: 23vh;
+    margin-bottom: 23vh;
+    text-align: center;
+    margin: 0 auto;
 }
