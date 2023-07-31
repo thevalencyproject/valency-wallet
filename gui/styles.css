@@ -203,3 +203,12 @@ p {
     margin: 0 auto;
     overflow-y: hidden;
 }
+
+#receiverKey {
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+#transactionAmount {
+    margin-bottom: 1vh;
+}

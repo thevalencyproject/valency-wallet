@@ -52,8 +52,8 @@
         <!--- Create Transaction -->
         <div id="createtransaction">
             <h1>CREATE A TRANSACTION</h1>
-            <button onclick="singleTransaction()">Single Transaction</button>
-            <button onclick="multipleTransactions()">Multiple Transactions</button><br>
+            <button class="menu-button" onclick="singleTransaction()">Single Transaction</button>
+            <button class="menu-button" onclick="multipleTransactions()">Multiple Transactions</button><br>
 
             <label for="numOfTransactions">How many transactions are there?</label>
             <select name="numOfTransactions" id="numOfTransactions" form="numOfTransactionsForm">
@@ -69,8 +69,8 @@
                 <option value="10transactions">10</option>
             </select><br>
 
-            <textarea placeholder="Enter the Receiver Address" cols="32" rows="1" id="receiverKey"></textarea><br>                        <!--- Repeated for # of transactions -->
-            <textarea placeholder="Enter the Transaction Amount (in VLNC)" cols="32" rows="1" id="transactionsAmount"></textarea><br>     <!--- Repeated for # of transactions -->
+            <textarea placeholder="Enter the Receiver Address" cols="64" rows="1" id="receiverKey"></textarea><br>                        <!--- Repeated for # of transactions -->
+            <textarea placeholder="Enter the Transaction Amount (in VLNC)" cols="64" rows="1" id="transactionAmount"></textarea><br>     <!--- Repeated for # of transactions -->
 
             <label for="useOnionRouting">Use Onion Routing + Bridging? (increases transaction fee)</label>
             <select name="numOfOnionNodes" id="numOfOnionNodes" form="numOfOnionNodesForm">
@@ -82,8 +82,8 @@
             </select>
 
             <p id="transactionfeeamount"></p>
-            <button onclick="sendTransaction()">Proceed</button>
-            <button onclick="cancelTransaction()">Cancel Transaction</button>
+            <button class="menu-button" onclick="sendTransaction()">Proceed</button>
+            <button class="menu-button" onclick="cancelTransaction()">Cancel Transaction</button>
 
             <p id="transactionresult"></p>
         </div>
