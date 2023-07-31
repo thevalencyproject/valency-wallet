@@ -55,6 +55,51 @@ textarea:focus {
       100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, 
       0% 100%,0% 100%);
 }
+.menu-button {
+    /* Props to Tommaso Costanza for this animation */
+    align-items: center;
+    appearance: none;
+    background-color: #FCFCFD;
+    border-radius: 4px;
+    border-width: 0;
+    box-shadow: rgba(45, 35, 66, 0.2) 0 2px 4px,rgba(45, 35, 66, 0.15) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #36395A;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: "JetBrains Mono",monospace;
+    height: 48px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition: box-shadow .15s,transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow,transform;
+    font-size: 0.7rem;
+}
+
+.menu-button:focus {
+    box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+}
+
+.menu-button:hover {
+    box-shadow: rgba(45, 35, 66, 0.3) 0 4px 8px, rgba(45, 35, 66, 0.2) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    transform: translateY(-2px);
+}
+
+.menu-button:active {
+    box-shadow: #D6D6E7 0 3px 7px inset;
+    transform: translateY(2px);
+}
 
 
 
@@ -65,7 +110,12 @@ body {
 }
 h1 {
     font-family: 'JetBrains Mono', sans-serif;
+    font-size: 4vh;
     text-align: center;
+}
+p {
+    font-size: 2vh;
+    font-family: 'JetBrains Mono', sans-serif;
 }
 
 
@@ -111,18 +161,17 @@ h1 {
     width: 100vw;
     height: 8vh;
     background-color: rgb(0, 114, 213);
-    overflow: hidden;
 }
 #controlpanelbarinfo {
-    font-family: 'JetBrains Mono', sans-serif;
-    font-size: 1.1rem;
     float: left;
     margin-left: 3vw;
     display: flex;
+    margin-top: -1vh;
 }
 #controlpanelbarbuttons {
     float: right;
     margin-right: 3vw;
+    margin-top: 1.3vh;
 }
 #controlpanelbarinforight {
     margin-left: 3vw;
@@ -132,14 +181,10 @@ h1 {
 #publicaddressdisplay {margin-bottom: -1.5vh;}
 #walletbalance {margin-bottom: -1.5vh;}
 
+/* Control Panel */
 #controlpanel {
     height: 92vh;
-}
-/* Control Panel
-#controlpanel {
-    height: 92vh;
-    padding-top: 23vh;
-    padding-bottom: 23vh;
+    padding-top: 20vh;
 }
 
 #createtransaction {
@@ -151,9 +196,10 @@ h1 {
 
 #checktransactionhistory {
     width: 50vw;
-    height: 46vh;
+    height: 0vh;
     margin-top: 23vh;
     margin-bottom: 23vh;
     text-align: center;
     margin: 0 auto;
-}*/
+    overflow-y: hidden;
+}
