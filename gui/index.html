@@ -10,16 +10,16 @@
 <body>
     <!--- Login Area -->
     <div id="loginmenu">
-        <h1>WALLET LOGIN</h1>
+        <h1 id="logintitletext">WALLET LOGIN</h1>
         <p id="logintext">Please enter a Username and Password:</p>
         <textarea placeholder="Username" cols="32" rows="1" id="user"></textarea><br>
         <textarea placeholder="Password" cols="32" rows="1" id="pass"></textarea><br>
-        
+
         <p id="logintext">Or login using a Private Key:</p>
         <textarea placeholder="Wallet Private Key" cols="32" rows="1" id="privatekey"></textarea><br>
-        
-        <button id="loginbutton" onclick="sendLoginRequest()">Login</button>
 
+        <button id="loginbutton" class="fancy-button" onclick="sendLoginRequest()">Login</button>
+        
         <p id="loginerror"></p><br>     <!--- Login Event Message - this is only display after an unsuccessful login attempt -->
     </div>
 
@@ -39,11 +39,11 @@
 
         <!--- Main Menu Bar-->
         <div id="controlpanelbarbuttons">
-            <button onclick="createTransaction()">Create Transaction</button>
-            <button onclick="showPrivateKey()">Show Private Key</button>
-            <button onclick="transactionHistory()">View Transaction History</button>
-            <button onclick="smartContract()">Upload Smart Contract to Network</button>
-            <button onclick="logout()">Logout</button>
+            <button class="menu-button" onclick="createTransaction()">Create Transaction</button>
+            <button class="menu-button" onclick="showPrivateKey()">Show Private Key</button>
+            <button class="menu-button" onclick="transactionHistory()">View Transaction History</button>
+            <button class="menu-button" onclick="smartContract()">Upload Smart Contract to Network</button>
+            <button class="menu-button" onclick="logout()">Logout</button>
         </div>
     </div>
 
@@ -92,7 +92,6 @@
         <div id="checktransactionhistory">
             <h1>TRANSACTION HISTORY</h1>
             <p id="transactionhistoryresult"></p>
-            <button onclick="returnToMainMenu()">Return to Main Menu</button>
         </div>
     </div>
 </body>

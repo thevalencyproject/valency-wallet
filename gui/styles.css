@@ -2,9 +2,9 @@
 textarea {
     padding-top: 1.1vh;
     height: 3.4vh;
-    resize: horizontal;
     background-color: rgb(56, 56, 56);
-    
+    resize: none;
+
     border-width: 2px;
     border: 2px solid rgb(255, 255, 255);
     outline: none;
@@ -21,7 +21,7 @@ textarea:focus {
     border: 2px solid rgb(0, 114, 213);
 }
 
-button {
+.fancy-button {
     /* Props to Temani Afif for this animation */
     --b:4px;   /* border length*/
     --c:15px;  /* the cube perspective */
@@ -47,7 +47,7 @@ button {
       var(--c) calc(100% - var(--c)),
       var(--c) calc(100% - var(--c)));
 }
-button:hover {
+.fancy-button:hover {
     transform:translate(0,0);
     clip-path: 
       polygon(0% var(--c), var(--c) 0%, 
@@ -55,9 +55,13 @@ button:hover {
       100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, 
       0% 100%,0% 100%);
 }
+
+
+
 body {
     background-color: #2b2b2b;
     color: #ffffff;
+    overflow-x: hidden;
 }
 h1 {
     font-family: 'JetBrains Mono', sans-serif;
@@ -70,7 +74,7 @@ h1 {
 #loginmenu {
     margin: 0 auto;
     text-align: center;
-    padding-top: 2vh;
+    padding-top: 0vh;
 
     /* Fancy Border */
     border-start-end-radius: 5vh;
@@ -90,8 +94,11 @@ h1 {
     margin-bottom: 20vh; 
 }
 #loginbutton {
-    margin-top: 2vh;
+    margin-top: 5vh;
     width: 15vw;
+}
+#logintitletext {
+    margin-top: 8vh;
 }
 #logintext {
     font-family: 'Roboto', sans-serif;
@@ -99,37 +106,36 @@ h1 {
 }
 
 
-
 /* Control Panel Menu/Data Bar */
 #controlpanelbar {
     width: 100vw;
     height: 8vh;
-    margin-top: 0vh;
     background-color: rgb(0, 114, 213);
+    overflow: hidden;
 }
 #controlpanelbarinfo {
     font-family: 'JetBrains Mono', sans-serif;
     font-size: 1.1rem;
     float: left;
-    margin-left: 4vh;
-    width: 100vh;
-    margin-top: -0.3vh;
+    margin-left: 3vw;
     display: flex;
 }
 #controlpanelbarbuttons {
     float: right;
-    margin-right: 4vh;
+    margin-right: 3vw;
 }
 #controlpanelbarinforight {
-    margin-left: 5vw;
+    margin-left: 3vw;
     float: right;
 }
 #controlpanelbarinfoleft { float: left; }
 #publicaddressdisplay {margin-bottom: -1.5vh;}
 #walletbalance {margin-bottom: -1.5vh;}
 
-
-/* Control Panel*/
+#controlpanel {
+    height: 92vh;
+}
+/* Control Panel
 #controlpanel {
     height: 92vh;
     padding-top: 23vh;
@@ -150,4 +156,4 @@ h1 {
     margin-bottom: 23vh;
     text-align: center;
     margin: 0 auto;
-}
+}*/
