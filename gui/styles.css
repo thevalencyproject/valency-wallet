@@ -73,8 +73,8 @@ textarea:focus {
     line-height: 1;
     list-style: none;
     overflow: hidden;
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 4px;
+    padding-right: 4px;
     position: relative;
     text-align: left;
     text-decoration: none;
@@ -84,7 +84,7 @@ textarea:focus {
     touch-action: manipulation;
     white-space: nowrap;
     will-change: box-shadow,transform;
-    font-size: 0.7rem;
+    font-size: 1.7vh;
 }
 
 .menu-button:focus {
@@ -170,11 +170,11 @@ p {
 }
 #controlpanelbarbuttons {
     float: right;
-    margin-right: 3vw;
-    margin-top: 1.3vh;
+    margin-right: 1.5vw;
+    margin-top: 1.55vh;
 }
 #controlpanelbarinforight {
-    margin-left: 3vw;
+    margin-left: 1.5vw;
     float: right;
 }
 #controlpanelbarinfoleft { float: left; }
@@ -211,4 +211,12 @@ p {
 
 #transactionAmount {
     margin-bottom: 1vh;
+}
+label {
+    font-family: 'JetBrains Mono', sans-serif;
+    font-size: 2vh;
+}
+select {
+    font-family: 'JetBrains Mono', sans-serif;
+    font-size: 1.4vh;
 }
