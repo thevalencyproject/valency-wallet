@@ -1,7 +1,7 @@
 /* Global Styles */
 textarea {
     padding-top: 1.1vh;
-    height: 3.4vh;
+    height: 5.1vh;
     background-color: rgb(56, 56, 56);
     resize: none;
 
@@ -76,7 +76,6 @@ textarea:hover {
     justify-content: center;
     line-height: 1;
     list-style: none;
-    overflow: hidden;
     padding-left: 4px;
     padding-right: 4px;
     position: relative;
@@ -106,11 +105,15 @@ textarea:hover {
 }
 
 
-
+* {
+    box-sizing: border-box;
+}
 body {
     background-color: #2b2b2b;
     color: #ffffff;
-    overflow-x: hidden;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 h1 {
     font-family: 'JetBrains Mono', sans-serif;
@@ -162,7 +165,7 @@ p {
 
 /* Control Panel Menu/Data Bar */
 #controlpanelbar {
-    width: 100vw;
+    width: 100%;
     height: 8vh;
     background-color: rgb(0, 114, 213);
 }
@@ -192,20 +195,19 @@ p {
 }
 
 #createtransaction {
-    width: 50vw;
     height: 46vh;
     text-align: center;
     margin: 0 auto;
 }
 
 #checktransactionhistory {
-    width: 50vw;
+    width: 100%;
     height: 0vh;
     margin-top: 23vh;
     margin-bottom: 23vh;
     text-align: center;
     margin: 0 auto;
-    overflow-y: hidden;
+    opacity: 0;
 }
 
 #receiverKey {
@@ -232,7 +234,7 @@ select {
 }
 
 .dynamicdisplay {
-    width: 20vw;
+    width: 100%;
     margin-top: 2vh;
 }
 #totalamount {
@@ -242,30 +244,31 @@ select {
     display: inline-block;
 }
 
-  .small-loader {
-    width: 50px;
-    height: 50px;
-    --c: radial-gradient(farthest-side, rgb(0, 114, 213) 92%,#0000);
-    background: 
-      var(--c) 50%  0, 
-      var(--c) 50%  100%, 
-      var(--c) 100% 50%, 
-      var(--c) 0    50%;
-    background-size: 10px 10px;
-    background-repeat: no-repeat;
-    animation: s8 1s infinite;
-    position: relative;
-  }
-  .small-loader::before {    
-    content:"";
-    position: absolute;
-    inset:0;
-    margin: 3px;
-    background:repeating-conic-gradient(#0000 0 35deg,rgb(0, 114, 213) 0 90deg);
-    -webkit-mask:radial-gradient(farthest-side,#0000 calc(100% - 3px),#000 0);
-    border-radius: 50%;
-  }
-  
-  @keyframes s8 { 
-    100%{transform: rotate(.5turn)}
-  }
+.small-loader {
+  width: 50px;
+  height: 50px;
+  --c: radial-gradient(farthest-side, rgb(0, 114, 213) 92%,#0000);
+  background: 
+    var(--c) 50%  0, 
+    var(--c) 50%  100%, 
+    var(--c) 100% 50%, 
+    var(--c) 0    50%;
+  background-size: 10px 10px;
+  background-repeat: no-repeat;
+  animation: s8 1s infinite;
+  position: relative;
+  margin-left: calc(50vw - 50px);
+}
+.small-loader::before {    
+  content:"";
+  position: absolute;
+  inset:0;
+  margin: 3px;
+  background:repeating-conic-gradient(#0000 0 35deg,rgb(0, 114, 213) 0 90deg);
+  -webkit-mask:radial-gradient(farthest-side,#0000 calc(100% - 3px),#000 0);
+  border-radius: 50%;
+}
+
+@keyframes s8 { 
+  100%{transform: rotate(.5turn)}
+}
