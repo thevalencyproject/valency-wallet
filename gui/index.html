@@ -52,23 +52,6 @@
         <!--- Create Transaction -->
         <div id="createtransaction">
             <h1>CREATE A TRANSACTION</h1>
-            <button class="menu-button" onclick="singleTransaction()">Single Transaction</button>
-            <button class="menu-button" onclick="multipleTransactions()">Multiple Transactions</button><br>
-
-            <label for="numOfTransactions">How many transactions are there?</label>
-            <select name="numOfTransactions" id="numOfTransactions" form="numOfTransactionsForm">
-                <option value="1transaction">1</option>
-                <option value="2transactions">2</option>
-                <option value="3transactions">3</option>
-                <option value="4transactions">4</option>
-                <option value="5transactions">5</option>
-                <option value="6transactions">6</option>
-                <option value="7transactions">7</option>
-                <option value="8transactions">8</option>
-                <option value="9transactions">9</option>
-                <option value="10transactions">10</option>
-            </select><br>
-
             <textarea placeholder="Enter the Receiver Address" cols="64" rows="1" id="receiverKey"></textarea><br>                        <!--- Repeated for # of transactions -->
             <textarea placeholder="Enter the Transaction Amount (in VLNC)" cols="64" rows="1" id="transactionAmount"></textarea><br>     <!--- Repeated for # of transactions -->
 
@@ -81,7 +64,13 @@
                 <option value="6onionnodes">6 Nodes</option>
             </select>
 
-            <p id="transactionfeeamount"></p>
+            <div class="dynamicdisplay">                                 <!--- Transaction Fee Text -->
+                <p id="transactionfeeamount">Transaction Fee: <div class="small-loader"></div></p>
+            </div>
+            <div class="dynamicdisplay">                                 <!--- Remaining Balance -->
+                <p id="totalamount">Remaining Balance: <div class="small-loader"></div></p>
+            </div>
+
             <button class="menu-button" onclick="sendTransaction()">Proceed</button>
             <button class="menu-button" onclick="cancelTransaction()">Cancel Transaction</button>
 
@@ -96,3 +85,22 @@
     </div>
 </body>
 </html>
+
+<!--- Multiple Transaction HTML Code (removed for first wallet version)
+<button class="menu-button" onclick="singleTransaction()">Single Transaction</button>
+<button class="menu-button" onclick="multipleTransactions()">Multiple Transactions</button><br>
+
+<label for="numOfTransactions">How many transactions are there?</label>
+<select name="numOfTransactions" id="numOfTransactions" form="numOfTransactionsForm">
+    <option value="1transaction">1</option>
+    <option value="2transactions">2</option>
+    <option value="3transactions">3</option>
+    <option value="4transactions">4</option>
+    <option value="5transactions">5</option>
+    <option value="6transactions">6</option>
+    <option value="7transactions">7</option>
+    <option value="8transactions">8</option>
+    <option value="9transactions">9</option>
+    <option value="10transactions">10</option>
+</select><br>
+-->
