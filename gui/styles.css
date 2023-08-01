@@ -33,7 +33,7 @@ textarea:hover {
     color: #ffffff;
     text-align: center;
     padding:8px;
-    transition: 0.35s;
+    transition: 0.25s;
     border: solid transparent;
     border-width:var(--b) var(--b) calc(var(--c) + var(--b)) calc(var(--c) + var(--b));
     background:
@@ -58,6 +58,9 @@ textarea:hover {
       100% 0%, 
       100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, 
       0% 100%,0% 100%);
+}
+.fancy-button:active {
+    transform:translate(-0.5vw,1vh);
 }
 .menu-button {
     /* Props to Tommaso Costanza for this animation */
@@ -275,4 +278,10 @@ select {
 
 @keyframes s8 { 
   100%{transform: rotate(.5turn)}
+}
+
+.submit-button {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 2vh;
 }
