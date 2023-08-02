@@ -12,7 +12,7 @@
     <div id="loginmenu">
         <h1 id="logintitletext">WALLET LOGIN</h1>
         <p id="logintext">Please enter a Username and Password:</p>
-        <textarea placeholder="Username" cols="32" rows="1" id="user"></textarea><br>
+        <textarea placeholder="Username" cols="32" rows="1" autofocus="true" id="user"></textarea><br>
         <textarea placeholder="Password" cols="32" rows="1" id="pass"></textarea><br>
 
         <p id="logintext">Or login using a Private Key:</p>
@@ -64,15 +64,14 @@
                 <option value="6onionnodes">6 Nodes</option>
             </select>
 
-            <div class="dynamicdisplay">                                 <!--- Transaction Fee Text -->
+            <div class="dynamicdisplay">                                <!--- Transaction Fee Text -->
                 <p id="transactionfeeamount">Transaction Fee: <div class="small-loader"></div></p>
             </div>
-            <div class="dynamicdisplay">                                 <!--- Remaining Balance -->
+            <div class="dynamicdisplay">                                <!--- Remaining Balance -->
                 <p id="totalamount">Remaining Balance: <div class="small-loader"></div></p>
             </div>
 
-            <button class="menu-button" onclick="sendTransaction()">Proceed</button>
-            <button class="menu-button" onclick="cancelTransaction()">Cancel Transaction</button>
+            <button class="fancy-button submit-button" onclick="sendTransaction()">Proceed with Transaction</button>
 
             <p id="transactionresult"></p>
         </div>
@@ -81,6 +80,34 @@
         <div id="checktransactionhistory">
             <h1>TRANSACTION HISTORY</h1>
             <p id="transactionhistoryresult"></p>
+        </div>
+
+        <!--- Upload Smart Contract to Network -->
+        <div id="uploadsmartcontract">
+            <h1>Upload a Smart Contract</h1>
+            
+            <label for="selectsmartcontract">Select a smart contract: </label>
+            <input type="file"></input>
+
+            <label for="useOnionRouting">Use Onion Routing + Bridging? (increases transaction fee)</label>
+            <select name="numOfOnionNodes" id="numOfOnionNodes" form="numOfOnionNodesForm">
+                <option value="noonionnodes">Don't Use Onion Routing + Bridging</option>
+                <option value="3onionnodes">3 Nodes</option>
+                <option value="4onionnodes">4 Nodes</option>
+                <option value="5onionnodes">5 Nodes</option>
+                <option value="6onionnodes">6 Nodes</option>
+            </select>
+        
+            <div class="dynamicdisplay">                                <!--- Upload Fee Text -->
+                <p id="uploadfeeamount">Upload Fee: <div class="small-loader"></div></p>
+            </div>
+            <div class="dynamicdisplay">                                <!--- Remaining Balance -->
+                <p id="totalamount">Remaining Balance: <div class="small-loader"></div></p>
+            </div>
+
+            <button class="fancy-button submit-button" onclick="uploadSmartContract()">Upload Smart Contract</button>
+
+            <p id="smartcontractuploadresult"></p>                      <!--- Displays either success or any errors -->
         </div>
     </div>
 </body>
