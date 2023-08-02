@@ -86,17 +86,21 @@
         <div id="uploadsmartcontract">
             <h1>Upload a Smart Contract</h1>
             
-            <label for="selectsmartcontract">Select a smart contract: </label>
-            <input type="file"></input>
-
-            <label for="useOnionRouting">Use Onion Routing + Bridging? (increases transaction fee)</label>
-            <select name="numOfOnionNodes" id="numOfOnionNodes" form="numOfOnionNodesForm">
-                <option value="noonionnodes">Don't Use Onion Routing + Bridging</option>
-                <option value="3onionnodes">3 Nodes</option>
-                <option value="4onionnodes">4 Nodes</option>
-                <option value="5onionnodes">5 Nodes</option>
-                <option value="6onionnodes">6 Nodes</option>
-            </select>
+            <div id="fileselection">
+                <label id="fileselect" for="selectsmartcontract">Select a smart contract: </label>
+                <input id="fileselect" type="file"></input>
+            </div>
+            
+            <div id="onionroutingselection">
+                <label for="useOnionRouting">Use Onion Routing + Bridging? (increases transaction fee)</label>
+                <select name="numOfOnionNodes" id="numOfOnionNodes" form="numOfOnionNodesForm">
+                    <option value="noonionnodes">Don't Use Onion Routing + Bridging</option>
+                    <option value="3onionnodes">3 Nodes</option>
+                    <option value="4onionnodes">4 Nodes</option>
+                    <option value="5onionnodes">5 Nodes</option>
+                    <option value="6onionnodes">6 Nodes</option>
+                </select>
+            </div>
         
             <div class="dynamicdisplay">                                <!--- Upload Fee Text -->
                 <p id="uploadfeeamount">Upload Fee: <div class="small-loader"></div></p>

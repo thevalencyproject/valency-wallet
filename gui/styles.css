@@ -231,6 +231,7 @@ select {
     color: #ffffff;
     background-color: rgba(0, 0, 0, 0.1);
     border: 2px solid rgb(0, 114, 213);
+    margin-left: 1vw;
 }
 #numOfOnionNodes {
     margin-top: 2vh;
@@ -284,4 +285,10 @@ select {
     padding-left: 20px;
     padding-right: 20px;
     font-size: 2vh;
+}
+
+#uploadsmartcontract {
+    height: 46vh;
+    text-align: center;
+    margin: 0 auto;
 }
