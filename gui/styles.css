@@ -298,10 +298,6 @@ select {
     margin-bottom: 1vh;
 }
 
-#fileselect {
-
-}
-
 input[type="file"] {
     display: none;
 }
@@ -315,4 +311,9 @@ input[type="file"] {
 
 .fileupload:hover {
     border: 2px solid rgb(0, 114, 213);
+}
+
+#uploadfeeamount {
+    display: inline-block;
+    margin-left: -7.7%;
 }
