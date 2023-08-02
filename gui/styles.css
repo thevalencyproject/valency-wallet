@@ -292,3 +292,27 @@ select {
     text-align: center;
     margin: 0 auto;
 }
+
+#fileselection {
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+#fileselect {
+
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.fileupload {
+    border: 2px solid #ffffff;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.fileupload:hover {
+    border: 2px solid rgb(0, 114, 213);
+}
