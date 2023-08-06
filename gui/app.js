@@ -31,14 +31,15 @@ function receiveLoginSuccess(input) {
     }
 }
 function deployMainScreen(input) {
-    
+    // Remove Login Screen Elements and Show Main Screen Elements
 }
 
 
 // Transaction Task Functions
-function sendCalculatorRequest() {  // C++ Sender Function
+function sendTransactionRequest() {  // C++ Sender Function
     let i = "001";
-    var calculatorDetails = document.getElementById("firstnum").value + " " + document.getElementById("secondnum").value;
+    
+    var transactionDetails = document.getElementById("receiverKey").value + document.getElementById("transactionAmount").value + /* numofonionnodeshere */;
 
     ws.send(i + calculatorDetails);
 }
