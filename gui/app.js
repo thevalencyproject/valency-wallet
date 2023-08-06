@@ -43,14 +43,31 @@ function sendTransactionRequest() {  // C++ Sender Function
 
     ws.send(i + calculatorDetails);
 }
-function receiveCalculatorResult(input) {
+function receiveTransactionResult(input) {
     document.getElementById("result").innerHTML = input;
 }
 
 // Smart Contract Task Functions
-
+function sendSmartContractRequest() {
+    let i = "002";
+    ws.send(i);
+}
+function receiveSmartContractResult(input) {
+}
 
 // Transaction History Task Functions
-
+function sendTransactionHistoryRequest() {
+    let i = "003";
+    ws.send(i);
+}
+function receiveTransactionHistoryResult(input) {
+}
 
 // Logout Task Functions
+function sendLogoutRequest() {
+    let i = "004";
+    ws.send(i);
+}
+function receiveLogoutResult(input) {
+    // Get rid of main screen and display login screen
+}
