@@ -33,6 +33,9 @@ function receiveLoginSuccess(input) {
 function deployMainScreen(input) {
     // Remove Login Screen Elements and Show Main Screen Elements
 }
+function removeMainScreen() {
+    // Remove Main Screen Elements and Show Login Screen Elements
+}
 
 
 // Transaction Task Functions
@@ -50,7 +53,10 @@ function receiveTransactionResult(input) {
 // Smart Contract Task Functions
 function sendSmartContractRequest() {
     let i = "002";
-    ws.send(i);
+
+    var contractRequest = /* numofonionnodeshere */ + document.getElementById("fileselect").value;
+
+    ws.send(i + contractRequest);
 }
 function receiveSmartContractResult(input) {
 }
@@ -61,6 +67,7 @@ function sendTransactionHistoryRequest() {
     ws.send(i);
 }
 function receiveTransactionHistoryResult(input) {
+    document.getElementById("transactionhistoryresult").innerHTML = input;
 }
 
 // Logout Task Functions
@@ -70,4 +77,5 @@ function sendLogoutRequest() {
 }
 function receiveLogoutResult(input) {
     // Get rid of main screen and display login screen
+    removeMainScreen();
 }
