@@ -59,6 +59,7 @@ function sendSmartContractRequest() {
     ws.send(i + contractRequest);
 }
 function receiveSmartContractResult(input) {
+    document.getElementById("smartcontractuploadresult").innerHTML = input;
 }
 
 // Transaction History Task Functions
