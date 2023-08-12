@@ -20,13 +20,23 @@ std::string WalletInterface::login(std::string input) {
     return ;    // Return the public and private key (generated from the username and password inputted)
 }
 std::string WalletInterface::transaction(std::string input) {
+    // Decode the input info
 
+    // Send a transaction
+
+    // Return the transaction reciept/failure
 }
 std::string WalletInterface::smartContract(std::string input) {
+    // Decode the smart contract info
 
+    // Validate the smart contract
+
+    // Send the smart contract
+
+    // Return the transaction reciept/failure
 }
 std::string WalletInterface::transactionHistory(std::string input) {
-
+    // Return the transaction history
 }
 std::string WalletInterface::logout() {
     // Clear the private and public address/key information here
