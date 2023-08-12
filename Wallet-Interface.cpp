@@ -2,7 +2,22 @@
 
 
 std::string WalletInterface::login(std::string input) {
+    // Set the private and public information here
+    if(input[0] == '|') {   // Logged in using public key
+        input.erase(0);               // Erase the first number
+        std::string publickey = ;     // Generate the public key from the inputted private key
 
+        // Save the private and public keys in C++ Backend
+
+        return ;    // Return the public and private key
+    }
+
+    std::string privatekey = ;    // Generate the private key from the username and password
+    std::string publickey = ;     // Generate the public key from the private key
+
+    // Save the private and public keys in C++ Backend
+
+    return ;    // Return the public and private key (generated from the username and password inputted)
 }
 std::string WalletInterface::transaction(std::string input) {
 
@@ -14,7 +29,9 @@ std::string WalletInterface::transactionHistory(std::string input) {
 
 }
 std::string WalletInterface::logout() {
+    // Clear the private and public address/key information here
 
+    return "success";   // Return logout succeeded
 }
 
 template<typename T>
