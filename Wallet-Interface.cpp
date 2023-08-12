@@ -24,6 +24,8 @@ std::string WalletInterface::transaction(std::string input) {
 
     // Send a transaction
 
+    // If the transaction is a success, add the transctioninfo to the transctionInfo string (for when the user displays their history)
+
     // Return the transaction reciept/failure
 }
 std::string WalletInterface::smartContract(std::string input) {
@@ -36,7 +38,7 @@ std::string WalletInterface::smartContract(std::string input) {
     // Return the transaction reciept/failure
 }
 std::string WalletInterface::transactionHistory(std::string input) {
-    // Return the transaction history
+    return transactionHistory;     // Return the transaction history
 }
 std::string WalletInterface::logout() {
     // Clear the private and public address/key information here
