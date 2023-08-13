@@ -49,6 +49,9 @@ std::string WalletInterface::transactionHistory(std::string input) {
 }
 std::string WalletInterface::logout() {
     // Clear the private and public address/key information here
+    privateKey.clear();
+    transactionHistory.clear();
+    publicKey.clear();
 
     return "success";   // Return logout succeeded
 }
