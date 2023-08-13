@@ -18,6 +18,8 @@ private:
     std::string logout();
 
     std::string transactionHistory;
+    std::string privateKey;
+    std::string publicKey;
 
 public:
     WalletInterface() {};
