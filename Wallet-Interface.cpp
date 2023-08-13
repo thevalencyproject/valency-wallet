@@ -6,12 +6,10 @@ std::string WalletInterface::login(std::string input) {
     if(input[0] == '|') {   // Logged in using private key
         input.erase(0);               // Erase the first number
         
-        std::string publickey = functions.generatePublicKey(input);     // Generate the public key from the inputted private key
+        privateKey = input;
+        publicKey = functions.generatePublicKey(input);     // Generate the public key from the inputted private key
 
-        // Save the private and public keys in C++ Backend
-        
-
-        return input + publickey;    // Return the public and private key
+        return input + publicKey;    // Return the public and private key
     }
 
     // First 2 characters represent the length of the username (max username length 99 chars)
@@ -23,8 +21,10 @@ std::string WalletInterface::login(std::string input) {
     std::pair<std::string, std::string> keyPair = functions.generateKeyPair(username, password);
 
     // Save the private and public keys in C++ Backend
+    privateKey = keyPair.first;
+    publicKey = keyPair.second;
 
-    return ;    // Return the public and private key (generated from the username and password inputted)
+    return privateKey + publicKey;    // Return the public and private key (generated from the username and password inputted)
 }
 std::string WalletInterface::transaction(std::string input) {
     // Decode the input info
