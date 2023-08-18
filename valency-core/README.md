@@ -1,18 +1,476 @@
 # Valency Core
-**This repository contains the core files used to build the valency project.**<br>
-**Each section/framework is designed to be modular for reuse in other cool open-source projects!**<br>
+Each module in this repository is designed to be modular for reuse in other cool open-source projects!<br><br>
+**This repository contains the following core modules used to build the valency project:**<br>
+1. A Networking Framework
+2. Onion Routing
+3. AES Symmetric Encryption
+4. NTRUencrypt Asymmetric Encryption
+5. Random Algorithm
+6. Console UI Framework
+7. File Reader and Writer
+8. Quicksort
+9. SHA-256 Hashing Algorithm
+10. LZMA Compression Algorithm
+11. Custom Types
+12. Traceable Ring Signatures
+13. GUI Framework
+<br>
 
-## Valency-Core consists of the following modular components:
-### Networking Framework
-### Onion Routing
-### AES Symmetric Encryption
-### NTRUencrypt Asymmetric Encryption
-### Random Algorithm
-### Console UI Framework
-### File Reader and Writer
-### Quicksort
-### SHA-256 Hashing Algorithm
-### LZMA Compression Algorithm
-### Traceable Ring Signatures
-### GUI Framework
-### Custom Types
+**Scroll Down for Implementation Instructions**
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+# Networking Framework
+The networking framework is based on a client-server relationship, and requires custom configuration of some handling functions to achieve your desired functionality. <br>
+There will be an update in the near future introducing multi-threaded networking, however for now it is only single-threaded.<br><br>
+**Client**
+1. Create a communicate() function wherever you are implementing client networking - This is the function that gets run everytime there is a message from the server, it takes in a string (server message), and returns a string (what you want to send back to the server) - if ```/quit``` is returned, the client will disconnect. <br>
+```
+std::string communicate(std::string serverMessage) {
+  if(serverMessage == "Some Data") {
+    return "Some Reply";
+  } else {
+    return "/quit";
+  }
+}
+```
+3. Include Client.h: ```#include "Client.h"```
+4. Create a Client Object: ```Client client;```
+5. Get the Server IP Address, Port, and communicate() function pointer: <br>```std::string ip = "192.168.1.1"; int port = 8088; std::string (*comm)(std::string) = communicate;```
+6. Connect to the server - this will automatically communicate using the communicate() function we configured earlier: <br>
+```client.connectToServer(&ip, &port, comm);```
+
+<br>
+
+**Server**
+1. Create a communicate() function wherever you are implementing client networking - This is the function that gets run everytime there is a message from the client, it takes in a string (client message), and returns a string (what you want to send back to the client). <br>
+```
+std::string communicate(std::string clientMessage) {
+  if(clientMessage == "Some Data") {
+    return "Some Reply";
+  } else {
+    return "Another Reply";
+  }
+}
+```
+3. Include Server.h: ```#include "Server.h"```
+4. Create a Server Object: ```Server server;```
+5. Get the Port and communicate() function pointer: <br>```int port = 8088; std::string (*comm)(std::string) = communicate;```
+6. Run the server - this will automatically communicate with clients using the communicate() function we configured earlier: <br>
+```server.run(&port, comm);```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+# Onion Routing
+**Onion Client** <br>
+1. Include Onion.h: ```#include "Onion.h";```
+2. Create an Onion Object: ```Onion onion;```
+3. Create a vector of the Node's you would like to route traffic through: <br>
+```
+NodeInfo n1(NetworkLocation l1(port1, ip1), nodeNTRUPublicKey1);
+NodeInfo n2(NetworkLocation l2(port2, ip2), nodeNTRUPublicKey2);
+NodeInfo n3(NetworkLocation l3(port3, ip3), nodeNTRUPublicKey3);
+
+std::vector<NodeInfo> nodes;
+nodes.push_back(n1); nodes.push_back(n2); nodes.push_back(n3); 
+```
+4. Get the data you want to send: ```std::string data = "Some Data!";```
+5. Create a communicate() function - This is the function that gets run everytime there is a message from the destination server, it takes in a string (server message), and returns a string (what you want to send back to the server). <br>
+```
+std::string communicate(std::string serverMessage) {
+  if(serverMessage == "Some Data") {
+    return "Some Reply";
+  } else {
+    return "/quit";
+  }
+}
+```
+6. Call the onionRouting() function - this will communicate: ```onion.onionRouting(nodes, data, communicate);```
+<br>
+
+**Onion Node** <br>
+1. Include OnionNode.h: ```#include "OnionNode.h"```
+2. Create an OnionNode object - this takes in the port in which communication is made: ```OnionNode node = OnionNode(some_port);```
+3. Get an NTRUencrypt public and private key (this can be done using the NTRUencrypt framework in Valency Core): <br>
+```std::string private = "Some Private Key"; std::string public = "Some Public Key";```
+4. Call the initialise() function - this takes in the private and public keys: ```node.initialise(public, private);```
+5. Call the run() function: ```node.run();```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+# AES Symmetric Encryption
+The AES-Encryption algorithm is used to encrypt and decrypt data using a single key. This framework allows for use of 128bit, 192bit, or 256bit AES-Encryption. The public functions allow for the input and output of either char vector's or strings (char vector step-by-step shown for encryption, and string step-by-step shown for decryption).<br>
+
+<br>
+
+**Encryption**
+1. Include AES-Encryption.h: ```#include "AES-Encryption.h"```
+2. Create an AESEncryption Object with either 128bit, 192bit, or 256bit: ```AESEncryption aes = AESEncryption(128)```
+3. Get a data and a key - these are taken in as a string, or as a vector of unsigned char's (ensure the key is the correct keylength (128bit=16, 192bit=24, 256bit=32)): ```std::vector<unsigned char> key; std::vector<unsigned char> data;```
+4. Call the encrypt function somewhere - this will return a either a string or a vector of unsigned char's as output: <br>
+```std::vector<unsigned char> output = aes.encrypt(key, data);``` <br>
+**Note**: The encryption function automatically saves the # of repeats that must be applied (this makes the cipher decryptable for any size).
+
+<br>
+
+**Decryption**<br>
+1. Include AES-Encryption.h: ```#include "AES-Encryption.h"```
+2. Create an AESEncryption Object with either 128bit, 192bit, or 256bit: ```AESEncryption aes = AESEncryption(128)```
+3. Get a cipher and its related key - these are taken in as a string, or as a vector of unsigned char's (ensure the key is the correct keylength (128bit=16, 192bit=24, 256bit=32)): ```std::string key; std::string data;```
+4. Call the decrypt function somewhere - this will return a either a string or a vector of unsigned char's as output: <br>
+```std::string output = aes.decrypt(key, data);``` <br>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+# NTRUencrypt Asymmetric Encryption
+**Selectable Parameters**<br>
+This implementation allows for selectable parameters when calling the constructor. The chosen parameters for this implementation of NTRUencrypt come from the table:
+|               | N             | p     | q     | df    | dg    | dr    |       | Constructor Call |
+|:-------------:|:-------------:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:----------------:|
+| NTRU167:2     | 167           | 2     | 127   | 45    | 35    | 18    |       | 1                |
+| NTRU167:3     | 167           | 3     | 128   | 61    | 20    | 18    |       | 2                |
+| NTRU251:2     | 251           | 2     | 127   | 35    | 35    | 22    |       | 3                |
+| NTRU251:3     | 251           | 3     | 128   | 50    | 24    | 16    |       | 4                |
+| NTRU503:2     | 503           | 2     | 253   | 155   | 100   | 65    |       | 5                |
+| NTRU503:3     | 503           | 3     | 256   | 21    | 72    | 55    |       | 6                |
+
+<p align="center">
+Source: Cherckesova, L. et al. (2020) ‘Post-quantum cryptosystem NTRUEnCrypt and its advantage over pre – quantum cryptosystem RSA’, E3S Web of Conferences, 224, pp. 4–4. doi:10.1051/e3sconf/202022401037.
+</p>
+<br>
+
+**Setup**
+1. Include NTRUencrypt.h: ```#include "NTRUencrypt.h"```
+2. Create a NTRUencrypt Object with your desired parameters (see table - p parameters >2 are currently not supported):<br>
+```NTRUencrypt ntru = NTRUencrypt(4)```
+<br>
+
+**Key Generation** <br>
+The keysize is dependant on the strength chosen in the constructor. The private key consists of both the f and g polynomials - making it double the size of the public key.
+1. Get a random seed - this could be from concatenating a login, or through the use of some random() function: <br>
+```int seed = random("LOGIN" + "PASSWORD");```
+2. Generate a private key using the random seed: ```std::string private = ntru.generatePrivateKey(seed);```
+3. Generate a public key using the private key: ```std::string public = ntru.generatePublicKey(private);```
+<br>
+
+**Encryption** <br>
+1. Get the input data as a string: ```std::string data = "Hello World!";```
+2. Get the public key of the entity you want to encrypt for: ```std::string publicKey = "some_key";```
+3. Generate the cipher using the encrypt function: ```std::string cipher = ntru.encrypt(publicKey, data);```
+4. Send the cipher to the recipient (this could be done using the valency-core networking framework).
+<br>
+
+**Decryption** <br>
+1. Get the cipher generated with your public key: ```std::string cipher = "some_data";```
+2. Get your private key (generated with ntru.generatePrivateKey(seed)): ```std::string privateKey = "some_key";```
+3. Decrypt the cipher using the decrypt function: ```std::string output = ntru.decrypt(privateKey, cipher);```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+# Random Algorithm
+**How to Use It:**
+1. Include Random.h: ```#include "Random.h"```
+2. Create a Random Object: ```Random random;```
+3. Get a minimum, maximum, and seed value - seed is simply a random integer: ```int min = 0, max = 10, seed = 3;```
+4. Call the random function somewhere - this will return a random integer between the minimum and maximum defined in step 3: <br>
+```random.getRandomNumber(&min, &max, &seed);```, or in use: ```int output = random.getRandomNumber(&min, &max, &seed);```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+# Console UI Framework
+This UI framework takes strings as input for single-line functions, and string vectors for multi-line functions. <br>
+The module supports multiple styles, with the ability to add custom styles (submit a pull request):
+
+| Style         | Number        |
+|:-------------:|:-------------:|
+| Box           | 0             |
+| Minimalistic  | 1             |
+| Hyphen        | 2             |
+| Arrow         | 3             |
+
+<br>
+
+**Setup**<br>
+1. Include ConsoleUI.h: ```#include "ConsoleUI.h"```
+2. Create a ConsoleUI Object - this takes in your desired style: ```ConsoleUI ui = ConsoleUI(0);```
+
+<br>
+
+**Functionality**<br>
+To call the functions, an input of either string (single-line) or string vector (multi-line) is required. Below is a table of single and multi line functions:
+
+| Single-Line   | Multi-Line    |
+|:-------------:|:-------------:|
+|               | header()      |
+| message()     | message()     |
+| input()       | input()       |
+|               | menu()        |
+
+There also exists the footer() function which does not take an input. The setStyle() function takes in the style you want to switch to. <br>
+Below are some example function implementations:
+
+**Example 1.** Call the header() function to produce a header with the inputted titles: <br>
+```
+std::vector<std::string> headerText;
+headerText.push_back("First Line");
+headerText.push_back("Second Line");
+ui.header(headerText);
+```
+will display the following when the style is Box:
+```
+ ______________________________
+|                              |
+|          First Line          |
+|         Second Line          |
+|______________________________|
+```
+
+<br><br>
+
+**Example 2.** Call the menu() function to produce a menu with the inputed string vector and a closed top (this will return the user selection): <br>
+```
+std::vector<std::string> menuText;
+menuText.push_back("First Option");
+menuText.push_back("Second Option");
+menuText.push_back("Third Option");
+int userResponse = ui.menu(menuText, true);
+```
+will display the following when the style is Box:
+```
+ ______________________________
+|                              |
+|  Please Select One:          |
+|   1. First Option            |
+|   2. Second Option           |
+|   3. Third Option            |
+|______________________________|
+
+    -> 
+```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+# File Reader and Writer
+**File Reader** <br>
+1. Include FileReader.h: ```#include "FileReader.h"```
+2. Create a FileReader Object: ```FileReader reader;```
+3. Get the path to the file you want to read: ```std::string path = "/folder/filename.extension";```
+4. Call the getData function (this will return a string vector - each index is the next line): <br> ```std::vector<std::string> fileData = reader.getData(&path);```
+<br>
+
+**File Writer** <br>
+1. Include FileWriter.h: ```#include "FileWriter.h"```
+2. Create a FileWriter Object: ```FileWriter writer;```
+3. Get the desired filename, and append it onto where you want the file to be written: <br>
+```std::string path = "/folder/filename.extension";```
+4. Get the data - this can be inputted as a string, or as a string vector: ```std::string data = "Some Data";```
+5. Call the createFile function (this will write the file): ```writer.createFile(&data, &path);```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+# Quicksort
+**How to Use It:**
+1. Include Quicksort.h: ```#include "Quicksort.h"```
+2. Create a QuickSort Object: ```QuickSort qsrt;```
+3. Get some kind of input - the sort() function takes an array of any numerical type: <br> 
+```int n = 10; float array[n] = {15.23, 85.15, 25.0, 96.87, 64.45, 13.15, 90.25, 87.85, 36.97, 25.35};```
+4. Call the sort function (takes in the leftmost index, and the pivot - usually rightmost index) - this will sort the input array: ```qsrt.sort(array, 0, n-1);```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+# SHA-256 Hashing Algorithm
+**How to Use It:** 
+1. Include SHA256.h: ```#include "SHA256.h"```
+2. Create a SHA256 Object: ```SHA256 sha;```
+3. Get some kind of input - hash() function takes a char[]: ```char data[] = "HASH THIS DATA!";```
+4. Call the hash function somewhere - this will return the hash of the input data as a string: <br>
+```sha.hash(data);```, or in use: ```std::string output = sha.hash(data);```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+# LZMA Compression Algorithm
+**Setup** <br>
+1. Include LZMA-Compression.h: ```#include "LZMA-Compression.h";```
+2. Create an LZMACompression object: ```LZMACompression lzma;```
+<br>
+
+**Compression** <br>
+1. Get the data you want to compress (taken in as a string or char vector): ```std::string data = "Some Data!";```
+2. Call the compress function - this will return the compressed data as the input type: <br>
+```std::string compressed = lzma.compress(&data);```
+<br>
+
+**Decompression** <br>
+1. Get the compressed data you want to decompress (taken in as a string or char vector): <br>
+```std::string compressed = "Compressed Data!";```
+2. Call the decompress function - this will return the decompressed data as the input type: <br>
+```std::string decompressed = lzma.decompress(&compressed);```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+# Custom Types
+The Custom Types this repository currently supports are the NetworkLocation and Position. <br>
+
+**Network Location** <br>
+The NetworkLocation struct is able to store an IP Address and Port:
+1. Include NetworkLocation.h: ```#include "NetworkLocation.h"```
+2. Get an IP Address and a Port: ```std::string ip = "some-IP"; int port = 3030;```
+3. Create a NetworkLocation Object: ```NetworkLocation location(port, ip);```
+4. To get the IP and port, simply use the object name, followed by the variable you want to get: ```location.port;```
+
+<br>
+
+**Position** <br>
+The Position struct is able to hold up to 5 variables of any type (types can vary). This is useful as std::pair is limited to only 2!
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+# Traceable Ring Signatures
+**Winternitz One-Time Signature Key Generation**
+1. Include Winternitz-Signature.h: ```#include "Winternitz-Signature.h"```
+2. Create a WinternitzSignature Object: ```WinternitzSignature winternitz;```
+3. Get a seed - this should be unique: ```size_t seed = 123456;```
+4. Generate a one-time private key: ```std::string privateKey = winternitz.generatePrivateKey(seed);```
+5. Generate a one-time public key - this is shared along with the signature and message for verification: <br>
+```std::string publicKey = winternitz.generatePublicKey(privateKey);```
+
+<br>
+
+**Ring Signature Generation**
+1. Include Ring-Signature.h: ```#include "Ring-Signature.h"```
+2. Create a TraceableRingSignature Object: ```TraceableRingSignature ringsignature;```
+3. Get the transaction amount, reveiver key, sender private key, and the number of decoys in the signature: <br>
+```unsigned int amount = 1; std::string receiver = "winternitz-public-key"; std::string private = "winternitz-private-key"; unsigned short decoys = 5;```
+4. Generate the signature: ```RingSignature signature = generateRingSignature(amount, receiver, private, decoys);```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+# GUI Framework
+The GUI Framework enables the communication between a C++ program and a JavaScript function - enabling the use of C++ in totally custom GUI's created using HTML and CSS! This framework relies on a locally-run websocket server on the C++ side, which the JavaScript can easily interface with. <br>
+
+**C++ Side of Things** <br>
+1. Include CPP-Interface.h: ```#include "CPP-Interface.h";```
+2. Create an CPPInterface Object: ```CPPInterface interface;```
+3. Create the custom function/s responsible for communication between GUI(JS), and program (C++) - these take in the JS messages, and return the reply message: <br>
+```
+std::string login(std::string input) {
+  if(input == "userpassword")
+        return "1";
+  
+  return "0";
+}
+```
+4. Fill a vector with all the custom function/s created in step 3 (the index of these functions are what is used in JS to reference them): <br>
+```
+template<typename T>
+std::vector<std::string (T::*)(std::string)> functions;
+functions.push_back(login);
+functions.push_back(any-other-functions);
+```
+5. Get the port you want to run the local server using: ```int port = 3030;```
+6. Call the run() function: ```interface.run(port, functions);```
+
+<br>
+
+**JavaScript Side of Things** <br>
+1. Create a WebSocket to interface with the C++ Server (localhost:PORT): ```const ws = new WebSocket(localhost:3030);```
+2. For each task in the GUI (unique button press, data input, etc), create a function to handle sending the data to the server (required): <br>
+```
+function sendLoginRequest() {
+  let i = "000";  // Append the Function Index to ensure the C++ server selects the correct processing function - the index of the function in the functions vector
+  var loginDetails = document.getElementById("user").value + document.getElementById("pass").value;
+
+  ws.send(i + loginDetails);
+}
+```
+3. If required, create the function/s to handle receiving the reply from the server: <br>
+```
+function receiveLoginSuccess(input) {  // 1 = Success, 0 = Failure
+  switch(result) {
+    case 0: document.getElementById("successful").innerHTML = "LOGIN SUCCESS"; break;
+    case 1: document.getElementById("successful").innerHTML = "LOGIN FAILURE"; break;
+    default: console.log("Invalid Login Server Message");
+  }
+}
+```
+4. Create the onmessage function - this uses a function index (in the example, this is the first 3 bytes of the message) to determine what kind of function to route the data through: <br>
+```
+ws.onmessage = (event) => {                             // Whenever a message arrives from the C++ Server
+  let index = event.data.slice(0, 3);                   // Get the function index (sent by C++ server as first 3 digits), and run it's respective function
+  let data = event.data.slice(3, event.data.length);    // Cut the first 3 characters in the string
+
+  // ADD CUSTOM CASES FOR EVERY KIND OF SERVER MESSAGE YOU WILL RECEIVE HERE (if the server returns somthing for that task):
+  switch(i) {
+    case "000": receiveLoginSuccess(data); break;
+    case "001": some-other-function(data); break;
+    default: console.log("Invalid Server Message")
+  }
+};
+```
+
+<br>
+
+**HTML Side of Things** <br>
+On the HTML side of the GUI, simply create some form of input (with unique ID's for reference in JS), and run the relevant JS sender function in (for example) button onclick: <br>
+```
+<textarea id="user">Username</textarea>  <!--- Ensure each input area contains a unique ID (JS uses the ID's to get the data) -->
+<textarea id="pass">Password</textarea>
+<button onclick="sendLoginRequest()"> Login</button>
+```
+
+<br>
+
+**Using the GUI** <br>
+When using the GUI, ensure to run the C++ program before starting the HTML + CSS + JS UI to ensure the JS script is able to properly connect. Other than this, it may be helpful to use an encryption function if running remotely.

@@ -1,3 +1,6 @@
+/* This file is a part of The Valency Project which is released under the GNU Lesser General Public License v2.1
+   Go to https://github.com/thevalencyproject/valency-wallet/blob/main/LICENSE for further license details.        */
+
 const ws = new WebSocket("localhost:3030");     // Create the connection to the C++ Server
 
 
@@ -19,7 +22,7 @@ ws.onmessage = (event) => {                               // Whenever a message 
 // Login Task Functions
 function sendLoginRequest() {   // C++ Sender Function
     let i = "000";
-    var loginDetails = document.getElementById("user").value + document.getElementById("pass").value + document.getElementById("privatekey").value;
+    var loginDetails = document.getElementById("user").value + document.getElementById("pass").value + '|' + document.getElementById("privatekey").value;
 
     ws.send(i + loginDetails);
 }
